@@ -30,3 +30,33 @@ This command also displays the friendly name and ID that can be used to find out
 The command docker inspect <friendly-name|container-id> provides more details about a running container, such as IP address, volumes mounted and their locations and its current execution state.
 
 The command docker logs <friendly-name|container-id> will display messages the container has written to standard error or standard out.
+
+
+# Building Container Images
+All Docker images start from a base image. These base images are used as the foundation for your additional changes to run your app. For example, we may require NGINX to be configured and running on the system before we can deploy some static HTML files. As such, we want to use NGINX as our base image.
+
+#### Dockerfiles
+`Dockerfile's` are simple text files with a command on each line. TO define a base command we use the command `FROM`.
+
+## Creating a Dockerfile
+1. Create a file named `Dockerfile` (no extension needed)
+
+```
+FROM nginx:1.9
+```
+
+## Running commands
+With the base image defined, we need to run various commands to configure our image. There are many commands to help with this, the main two commands are `COPY` and `RUN`.
+
+`RUN` allows you to execute any command as you would at a command prompt, for example installing different application packages or running a build command. The results of the RUN are persisted to the image so it's important not to leave any unnecessary or temporary files on the disk as these will be included in the image.
+
+`COPY` allows you to copy files from the directory containing the Dockerfile to the container's image. This is **extremely useful** for source code and assets that you want deployed inside your container.
+
+```
+# Define base image
+FROM nginx:1.9
+
+COPY index.html /usr/share/nginx/html/index.html
+```
+#### Default Commands
+The `CMD` line in a Dockerfile defines the default command to run when a container is launched. If the command requires arguments then you need to use an array, for example ["cmd", "-a", "arga value", "-b", "argb-value"], which will be combined together and the command `cmd -a arga value -b argb-value` would be run.
