@@ -161,4 +161,13 @@ var PersonController = function($scope, $http){
 };
 ```
 
+We can chain functions together to shorten things up
+
+```
+$http.get("/users/1759")
+	.then(function(response){
+		$scope.data = response.data;
+	});
+```
+
 # Directives and Views
