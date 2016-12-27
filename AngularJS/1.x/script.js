@@ -6,6 +6,13 @@
 
         var onUserComplete = function (response) {
             $scope.user = response.data;
+            // Get additional info about User
+            $http.get($scope.user.repos_url)
+                .then(onRepos, onError);
+        };
+
+        var onRepos = function (response) {
+            $scope.repos = response.data;
         };
 
         var onError = function (reason) {
