@@ -99,7 +99,7 @@ The problem with the above approach is global scope.
 ####How to define all of my code and execute it safely? 
  Use an IIFE (immediate invoked function expression).
 
-## Controllers
+# Controllers
 * Controller directive in HTML (ng-controller)
 * `ng-controller` is an attribute which we place inside of our HTML.
 * Can only be used under a `ng-app` directive
@@ -123,5 +123,42 @@ var MainController = function($scope){
 * Attach model to `$scope`. `$scope` is NOT the model, but things we attach to it will be the model.
 * Above, we've only attached one property to $scope, `.message`
 
+## Controller Capabilities
+* Multiple controllers
+* Complex objects
+* Nest controllers
 
-## Directives and Views
+## Calling HTTP
+Right now we are mocking data in our controller. In the real world, we fetch data from a server through HTTP. 
+
+#### $http Service
+* Encapsulates HTTP communication 
+* Object with methods that can be used to make HTTP calls 
+	* GET, POST, PUT, DELETE
+* We can "ask" for $http inside a controller
+
+```
+var PersonController = function($scope, $http){
+	$scope.user = $http.get("/users/1759");
+};
+```
+The above code is flawed, however, because the HTTP call never return data immediately because the call happens asynchronously. The background call could that 25ms or 25 seconds, so we cannot access the data immediately.
+
+The HTTP method returns a `Promise`
+
+* A Promise is an object that promises to give you some result in the future, and the result might be your data or an error.
+* To find out, call a `.then()` method a function that will be called in the future
+
+```
+var PersonController = function($scope, $http){
+	var promise = $http.get("/users/1759");
+	// Pass functions to other functions to do work
+	// The .then() method calls a new function which will pass in the response data when it is ready. The promise passes the response object.
+
+	promise.then(function(response){
+		$scope.user = response.data;
+	});
+};
+```
+
+# Directives and Views
