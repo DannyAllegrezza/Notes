@@ -170,4 +170,30 @@ $http.get("/users/1759")
 	});
 ```
 
+## Modules
+* Controllers usually live in Angular modules
+	* Avoids the global namespace
+
+Create a single module and place a controller inside of it
+
+* Working with modules
+	* Create a module with a name
+	* Register your controllers in the module
+	* Tell Angular to use your module with `ng-app`
+
+`var app = angular.module("githubViewer", []);`
+`// module(nameOfTheModule, an array of dependencies`
+
 # Directives and Views
+* $scope provides the model
+* model does not touch the HTML
+* data binding moves model data to view
+* directives allow for indirect model view interaction
+
+We can push data back into our model using `ng-model` on our view
+
+    <!-- User Form -->
+    <form name="searchUser">
+        <input type="search" placeholder="Username to find" ng-model="username" />
+        <input type="submit" value="Search"/>
+    </form>

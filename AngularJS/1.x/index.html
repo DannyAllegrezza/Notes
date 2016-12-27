@@ -2,25 +2,38 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" ng-app="gitHubViewer"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Angular Demo</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
-        <script src="script.js"></script>        
-    </head>
+<!--[if gt IE 8]><!-->
+<html class="no-js" ng-app="gitHubViewer">
+<!--<![endif]-->
 
-    <body ng-controller="MainController">
-        <h1>{{message}}</h1>   
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Angular Demo</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+    <script src="script.js"></script>
+</head>
+
+<body ng-controller="MainController">
+    <h1>{{message}}</h1>
+
+    <div>{{error}}</div>
+
+    <!-- User Form -->
+    <form name="searchUser" ng-submit="search(username)">
+        <input type="search" required placeholder="Username to find" ng-model="username" />
+        <input type="submit" value="Search" />
+    </form>
+
+    <div>
+        <h2>Github Username: {{user.login}}</h2>
+        <div>Name: {{user.name}}</div>
         <div>
-            <div>First name: {{person.firstName}}</div>
-            <div>Last name: {{person.lastName}}</div>
-            <div>
-                <img ng-src="{{person.imageSrc}}" title="{{person.firstName}}"/>
-            </div>
+            <img ng-src="{{user.avatar_url}}" title="{{user.name}}" />
         </div>
-    </body>
+    </div>
+</body>
+
 </html>
