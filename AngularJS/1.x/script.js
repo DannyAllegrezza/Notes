@@ -2,7 +2,7 @@
 
     var app = angular.module("gitHubViewer", []);
 
-    var MainController = function ($scope, $http) {
+    var MainController = function ($scope, $http, $interval) {
 
         var onUserComplete = function (response) {
             $scope.user = response.data;
@@ -19,6 +19,17 @@
             $scope.error = "Could not fetch user";
         };
 
+        var decrementCountdown = function () {
+            $scope.countdown -= 1;
+            if ($scope.countdown < 1) {
+                $scope.search($scope.username);
+            }
+        };
+
+        var startCountdown = function () {
+            $interval(decrementCountdown, 1000, $scope.countdown);
+        }
+
         $scope.search = function (username) {
             $http.get("https://api.github.com/users/" + username)
                 .then(onUserComplete, onError);
@@ -27,7 +38,10 @@
         $scope.username = "angular";
         $scope.message = "Github Viewer";
         $scope.repoSortOrder = "-stargazers_count";
+        $scope.countdown = 5;
+
+        startCountdown();
     };
 
-    app.controller("MainController", MainController);
+    app.controller("MainController", ["$scope", "$http", "$interval", MainController]);
 }());

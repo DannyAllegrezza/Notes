@@ -197,3 +197,51 @@ We can push data back into our model using `ng-model` on our view
         <input type="search" placeholder="Username to find" ng-model="username" />
         <input type="submit" value="Search"/>
     </form>
+
+### ng-repeat
+Very similar to a for-each loop in C#. Allows us to repeat over a variable, usually a collection.
+
+### filters
+
+### Directives
+There are a ton of directives that we can use
+
+* ng-app
+* ng-class
+* ng-disabled
+* ng-if
+* ng-keypress
+* ng-mouseleave
+* ng-repeat
+* ng-bind
+* ng-click
+* ng-focus
+
+etc......
+
+### Services
+* Controllers setup the model
+* View consumes the model using directives
+* Directives are an intermediary
+
+`Controller -> Model -> Directives -> View`
+
+One way to think about things is that if the logic doesn't fit in a Model, View, or Directive, then you can put your logic in a Service.
+
+* You'd never use a Service from a View  
+* Can offer functionality to Models and Directives in a re-usable way
+* Can contain logic that either
+* A. Doesn't belong in a Model or Directive
+* B. Logic you want to be able to use from several Models or Directives that are in the application
+* C. Just want to package up some functionality because Controller is growing too large
+
+So far, we've used the `$http` service.
+
+`$timeout` and `$interval` services
+
+### Demo:
+Give users 5 seconds to enter search query and click "Search" else use whatever is in input field.
+
+`setInterval` in Angular is `$interval` 
+
+`setTimeout` in Angular is `$timeout`
