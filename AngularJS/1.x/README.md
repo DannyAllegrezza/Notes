@@ -245,3 +245,6 @@ Give users 5 seconds to enter search query and click "Search" else use whatever 
 `setInterval` in Angular is `$interval` 
 
 `setTimeout` in Angular is `$timeout`
+
+##### Services interacting with something in the browser.
+Generally, try to keep services and controllers from interacting with the UI directly, but there are scenarios where it is useful to invoke UI behavior from Model or Service logic.
