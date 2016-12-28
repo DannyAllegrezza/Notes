@@ -3,7 +3,7 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html class="no-js" ng-app="gitHubViewer">
+<html class="no-js" ng-app="githubViewer">
 <!--<![endif]-->
 
 <head>
@@ -14,6 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
     <script src="script.js"></script>
+    <script src="services/github.js"></script>
 </head>
 
 <body ng-controller="MainController">
@@ -29,7 +30,7 @@
     </form>
 
     <div ng-include="'userdetails.html'" ng-show="user">
-    
+
     </div>
 </body>
 
