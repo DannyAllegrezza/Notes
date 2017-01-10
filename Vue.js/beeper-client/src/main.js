@@ -26,6 +26,20 @@ Vue.http.interceptors.push(function (request, next) {
   });
 });
 
+// Configure route guards
+Router.beforeEach(function (to, from, next) {
+  // prevent access to routes with 'requiresGuest' attribute
+  if (to.matched.some(function (record) {
+      return record.meta.requiresGuest
+    }) && Vue.auth.loggedIn()) {
+      next({
+        path: '/newsfeed'
+      });
+  } else {
+    next(); // always call next()
+  }
+});
+
 // Create our main Vue instance
 new Vue({
   el: '#app',

@@ -28,7 +28,8 @@
 			login: function () {
 				this.$http.post("/auth", this.user)
 						.then(function (res){
-
+							this.$auth.setToken(res.body.token, Date.now() + 7200000); // + 2 hours expiration
+							this.$router.push('/newsfeed');
 						});						
 			}
 		}

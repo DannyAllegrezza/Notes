@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+
 import Auth from './components/auth/Auth.vue';
 import Login from './components/auth/Login.vue';
 import Register from './components/auth/Register.vue';
