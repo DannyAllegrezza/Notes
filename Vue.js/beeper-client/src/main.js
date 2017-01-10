@@ -2,8 +2,10 @@ import Vue from 'vue'
 import App from './App'
 import Router from './routes.js';
 import VueResource from 'vue-resource';
+import Auth from './plugins/Auth.js';
 
 Vue.use(VueResource);
+Vue.use(Auth);
 
 // Configure alertify default settings
 alertify.defaults.notifier.position = 'top-right';
