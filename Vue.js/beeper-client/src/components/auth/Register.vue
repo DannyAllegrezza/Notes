@@ -27,19 +27,12 @@
 		},
 		methods: {
 			register: function (){
-				this.$http.post("http://beeper.dev:8000/users", this.user)
+				this.$http.post("/users", this.user)
 						.then(function(res){
 							alertify.success("Success! You can now login with your email and password.");
 							// Redirect user to Login
 							this.$router.push('/auth/login');
-						})
-						.catch(function (res){
-							if (res.status === 422){
-								res.body.errors.forEach(function(e){
-									alertify.error(e);
-								});
-							}
-						})
+						});
 			}
 		}
 	}
