@@ -14,6 +14,11 @@ alertify.defaults.notifier.position = 'top-right';
 Vue.http.interceptors.push(function (request, next) {
   if (request.url[0] === '/') {
     request.url = process.env.API + request.url;
+    // add the JWT to the header
+    var token = Vue.auth.getToken();
+    if(token){
+      request.headers.set('Authorization', 'Bearer ' + token);
+    }
   }
 
   // Response interceptor -- used for handling errors
