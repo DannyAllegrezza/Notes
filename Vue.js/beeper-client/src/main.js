@@ -40,6 +40,13 @@ Router.beforeEach(function (to, from, next) {
       next({
         path: '/newsfeed'
       });
+  } else if (to.matched.some(function (record) {
+      return record.meta.requiresAuth
+    }) && !Vue.auth.loggedIn()) {
+      next({
+        path: 'auth/login',
+        query: { redirect: to.fullPath }
+      });
   } else {
     next(); // always call next()
   }

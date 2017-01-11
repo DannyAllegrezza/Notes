@@ -1,6 +1,8 @@
 <!--This is our root component. -->
 <template>
-  <router-view></router-view>
+  <transition name="scale">
+    <router-view></router-view>
+  </transition>
 </template>
 
 <script>
